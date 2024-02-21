@@ -5,25 +5,15 @@ using namespace std;
 
 string solution(string code) {
     string answer = "";
-    int mode = 0;
+    bool mode = false;
     for(int i = 0; i < code.length(); i++){
-        if(mode == 0){
-            if(i % 2 == 0 && code[i] != '1'){
-                answer.push_back(code[i]);
-            }
-            else if(code[i] == '1'){
-                mode = 1;
-            }
+        if(code[i] == '1'){
+            mode = !mode;
+            continue;
         }
-        else if (mode == 1){
-            if(i % 2 == 1 && code[i] != '1'){
-                answer.push_back(code[i]);
-            }
-            else if(code[i] == '1'){
-                mode = 0;
-            }
+        if((mode && i % 2 == 1) || (!mode && i % 2 == 0)){
+            answer.push_back(code[i]);
         }
-        
     }
     if(answer.empty()){
         answer = "EMPTY";
