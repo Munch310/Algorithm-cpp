@@ -1,11 +1,9 @@
 #include <vector>
-#include <algorithm>
+#include <unordered_set>
 using namespace std;
 
 int solution(vector<int> nums) {
-    int originalLength = nums.size();
-    sort(nums.begin(), nums.end());
-    nums.erase(unique(nums.begin(), nums.end()), nums.end());
-    int answer = min((int)nums.size(), originalLength / 2);
-    return answer;
+    unordered_set<int> pokemonTypes(nums.begin(), nums.end());
+    int maxTypes = min(pokemonTypes.size(), nums.size() / 2);
+    return maxTypes;
 }
