@@ -6,22 +6,21 @@ using namespace std;
 
 vector<int> solution(int N, vector<int> stages) {
     vector<int> answer;
+    vector<int> stageReached(N+1, 0);
+    vector<int> stageNotCleared(N+1, 0);
     vector<pair<double, int>> failRate;
     
-    for(int i = 1; i <= N; i++){
-        int reached = 0;
-        int notCleared = 0;
-        
-        for(int j = 0; j < stages.size(); j++){
-            if(stages[j] > i){
-                reached++;
-            } else if(stages[j] == i){
-                notCleared++;
-                reached++;
-            }
+    for(int stage : stages){
+        if(stage <= N){
+            stageNotCleared[stage]++;
         }
-        
-        double rate = reached > 0 ? (double)notCleared / reached : 0;
+        for(int i = 1; i <= stage && i <= N; i++){
+            stageReached[i]++;
+        }
+    }
+    
+    for(int i = 1; i <= N; i++){
+        double rate = stageReached[i] > 0 ? (double) stageNotCleared[i] / stageReached[i] : 0;
         failRate.push_back({-rate, i});
     }
     
