@@ -17,7 +17,7 @@ vector<int> solution(vector<string> keymap, vector<string> targets) {
         }
     }
     
-    for(const string& target: targets){
+    for(const string& target : targets){
         int totalPresses = 0;
         bool canType = true;
         for(char c : target){
@@ -28,7 +28,6 @@ vector<int> solution(vector<string> keymap, vector<string> targets) {
                 totalPresses += charToPresses[c];
             }
         }
-        
         if(!canType){
             answer.push_back(-1);
         } else{
