@@ -1,10 +1,10 @@
 # [level 0] 옷가게 할인 받기 - 120818 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120818#qna) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120818) 
 
 ### 성능 요약
 
-메모리: 3.61 MB, 시간: 0.01 ms
+메모리: 4.21 MB, 시간: 0.01 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 02월 29일 17:16:15
+2024년 02월 29일 17:22:27
 
 ### 문제 설명
 
