@@ -1,0 +1,1 @@
+int solution(int n) { return n ? n % 10 + solution(n / 10) : 0; }
