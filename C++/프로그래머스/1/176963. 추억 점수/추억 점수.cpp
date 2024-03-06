@@ -1,22 +1,24 @@
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
 vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<string>> photo) {
     vector<int> answer;
-    for(int i = 0; i < photo.size(); i++){
-        int photoYearning = 0;
-        for(int j = 0; j < name.size(); j++){
-            for(int k = 0; k < photo[i].size(); k++){
-                if(name[j] == photo[i][k]){
-                    photoYearning += yearning[j];
-                    break;
-                }
+    unordered_map<string, int> scores;
+    for(int i = 0; i < name.size(); ++i){
+        scores.emplace(name[i], yearning[i]);
+    }
+    for(const auto& group : photo){
+        int groupSum = 0;
+        for(const auto& name : group){
+            auto it = scores.find(name);
+            if(it != scores.end()){
+                groupSum += it -> second;
             }
         }
-        answer.push_back(photoYearning);
+        answer.emplace_back(groupSum);
     }
     return answer;
 }
