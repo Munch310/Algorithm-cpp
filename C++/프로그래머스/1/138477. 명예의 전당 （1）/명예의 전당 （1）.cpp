@@ -1,4 +1,4 @@
-#include <string>
+#include <queue>
 #include <vector>
 #include <algorithm>
 
@@ -6,19 +6,16 @@ using namespace std;
 
 vector<int> solution(int k, vector<int> score) {
     vector<int> answer;
-    vector<int> honors;
+    priority_queue<int, vector<int>, greater<int>> honors;
     for(int i = 0; i < score.size(); ++i){
-        if(i < k){
-            honors.emplace_back(score[i]);
-        } else {
-            sort(honors.begin(), honors.end(), greater<int>());
-            if(score[i] > honors.back()){
-                honors.pop_back();
-                honors.emplace_back(score[i]);
+        if(i < k) honors.push(score[i]);
+        else{
+            if(score[i] > honors.top()){
+                honors.pop();
+                honors.push(score[i]);
             }
         }
-        sort(honors.begin(), honors.end());
-        answer.emplace_back(honors.front());
+        answer.push_back(honors.top());
     }
     return answer;
 }
