@@ -3,30 +3,16 @@ using System.Collections.Generic;
 
 public class Solution {
     public int solution(int[] ingredient) {
-        Stack<int> stack = new Stack<int>();
+        List<int> stack = new List<int>();
         int countBurgers = 0;
 
         foreach (int item in ingredient) {
-            stack.Push(item);
+            stack.Add(item);
             if (stack.Count >= 4) {
-                int[] top = new int[4];
-                bool match = true;
-                int[] correctPattern = new int[] {1, 3, 2, 1};
-                for (int i = 0; i < 4; i++) {
-                    top[i] = stack.Pop();
-                }
-                for (int i = 0; i < 4; i++) {
-                    if (top[i] != correctPattern[i]) {
-                        match = false;
-                    }
-                }
-                
-                if (match) {
+                int n = stack.Count;
+                if (stack[n - 1] == 1 && stack[n - 2] == 3 && stack[n - 3] == 2 && stack[n - 4] == 1) {
+                    stack.RemoveRange(n - 4, 4);
                     countBurgers++;
-                } else {
-                    for (int i = 3; i >= 0; i--) {
-                        stack.Push(top[i]);
-                    }
                 }
             }
         }
