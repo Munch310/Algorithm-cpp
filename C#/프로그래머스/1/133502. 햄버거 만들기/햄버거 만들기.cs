@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Solution {
     public int solution(int[] ingredient) {
-        List<int> list = new List<int>();
+        List<int> list = new List<int>(); 
         int answer = 0;
         foreach(int item in ingredient)
         {
@@ -17,9 +17,7 @@ public class Solution {
                     answer++;
                 }
             }
-            
         }
-        
         return answer;
     }
 }
